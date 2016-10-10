@@ -11,13 +11,15 @@ const config = {
     publicPath: BUILD_DIR,
     filename: 'bundle.js'
   },
-  devserver: {
+  devServer: {
     proxy: {
-      '/api': {
-        target: 'http://bitbargains.online'
+      '/api/**': {
+        target: 'http://52.52.22.4',
+        secure: false
       },
-      '/auth': {
-        target: 'http://bitbargains.online'
+      '/auth/**': {
+        target: 'http://52.52.22.4',
+        secure: false
       }
     },
     port: 3000,
