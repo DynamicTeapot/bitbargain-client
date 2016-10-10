@@ -30,7 +30,7 @@ class productContainer extends React.Component {
     };
   }
   componentWillMount() {
-    fetch(`/items/${this.props.params.id}`, {
+    fetch(`/api/items/${this.props.params.id}`, {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -48,7 +48,7 @@ class productContainer extends React.Component {
     this.initCarousel();
   }
   componentWillReceiveProps(nextProps) {
-    fetch(`/items/${this.props.params.id}/${this.props.user}/transaction`, {
+    fetch(`/api/items/${this.props.params.id}/${this.props.user}/transaction`, {
       credentials: 'include'
     })
       .then(res => res.json())

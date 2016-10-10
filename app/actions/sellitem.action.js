@@ -34,7 +34,7 @@ export const IMAGE_POST = 'IMAGE_POST';
 
 export function imagePost(image) {
   return (dispatch) => {
-    const url = '/image';
+    const url = '/api/image';
     dispatch({ type: IMAGE_POST });
     const options = {
       credentials: 'include',
@@ -66,7 +66,7 @@ export function sellPost(product) {
     let url = 'http://localhost:9009';
     url = `${url}/items/sell`; */
 
-    const url = '/items/sell';
+    const url = '/api/items/sell';
     dispatch({ type: SELL_POST });
 
     const options = {

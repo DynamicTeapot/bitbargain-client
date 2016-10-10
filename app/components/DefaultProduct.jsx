@@ -25,7 +25,7 @@ class DefaultProduct extends React.Component {
   buy() {
     if (this.state.canBuy && this.props.loggedIn) {
       this.setState({ processing: true });
-      fetch(`/items/${this.props.product.id}/buy`, {
+      fetch(`/api/items/${this.props.product.id}/buy`, {
         method: 'POST',
         mode: 'no-cors',
         credentials: 'include'
