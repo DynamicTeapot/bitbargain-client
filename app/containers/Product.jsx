@@ -33,7 +33,10 @@ class productContainer extends React.Component {
     fetch(`/api/items/${this.props.params.id}`, {
       credentials: 'include'
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log(`Response from server, ${res}`);
+        return res.json();
+      })
       .then((res) => {
         // set default image if none are present
         if (!res.images) {
