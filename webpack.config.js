@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const BUILD_DIR = path.resolve(__dirname, 'build');
 // Redirect to localhost if the REDIRECT variable is set
@@ -26,6 +27,9 @@ const config = {
     port: 3000,
     historyApiFallback: true
   },
+  plugins: [
+    new DashboardPlugin()
+  ],
   module: {
     loaders: [
       {
