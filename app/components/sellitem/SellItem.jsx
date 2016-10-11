@@ -16,7 +16,7 @@ class sellItemContainer extends React.Component {
       categories: []
     };
   }
-  handleForm() {
+  handleForm(e) {
     // /items/sell endpoint
     if(this.state.title && this.state.description && this.state.price) {
       const newItem = this.state;
@@ -34,25 +34,26 @@ class sellItemContainer extends React.Component {
     this.setState({categories: this.state.categories.concat(e.target.value)});
   }
   categorize() {
-    if (this.state.title && this.state.description && !this.state.submitted) {
-      this.setState({submitted: true});
-      fetch(`/api/categories/predict`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({text: this.state.title + ' ' + this.state.description})
-      })
-      .then(resp => resp.text())
-      .then(raw => {
-        this.setState({categories: this.state.categories.concat(raw)});
-      });
-      // this.props.getCategories(this.state.title.valueOf() + ' ' + this.state.description.valueOf());
-    }
+    // if (this.state.title && this.state.description && !this.state.submitted) {
+    //   this.setState({submitted: true});
+    //   fetch(`/api/categories/predict`, {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({text: this.state.title + ' ' + this.state.description})
+    //   })
+    //   .then(resp => resp.text())
+    //   .then(raw => {
+    //     this.setState({categories: this.state.categories.concat(raw)});
+    //   });
+
+    // this.props.getCategories(this.state.title.valueOf() + ' ' + this.state.description.valueOf());
+    // }
   }
   render() {
-    const submitFun = (e) => { e.preventDefault(); this.handleForm(); return false; };
+    const submitFun = (e) => { e.preventDefault(); this.handleForm(e); return false; };
     const priceFun = e => this.setState({ price: e.target.value });
     const descFun = e => this.setState({ description: e.target.value });
     const titleFun = e => this.setState({ title: e.target.value });
@@ -107,7 +108,7 @@ class sellItemContainer extends React.Component {
               </div>
 
 
-              <button className="btn waves-effect waves-light" type="submit" name="action" onClick={(e)=>{submitFun(e)}}>Submit
+              <button className="btn waves-effect waves-light" type="submit" name="action" onClick={submitFun}>Submit
                 <i className="material-icons right">send</i>
               </button>
 
