@@ -11,35 +11,74 @@ class sellItemContainer extends React.Component {
     this.state = {
       title: '',
       description: '',
-      price: ''
+      price: '',
+      submitted: false,
+      categories: []
     };
   }
-
   handleForm() {
     // /items/sell endpoint
-    const newItem = this.state;
-    newItem.created_at = new Date();
-    newItem.updated_at = new Date();
-    // join local state w/ redux images
-    newItem.images = this.props.images;
-    this.props.submitSell(newItem);
+    if(this.state.title && this.state.description && this.state.price) {
+      const newItem = this.state;
+      delete newItem.submitted;
+      newItem.category = JSON.stringify(this.state.categories);
+      newItem.created_at = new Date();
+      newItem.updated_at = new Date();
+      // join local state w/ redux images
+      newItem.images = this.props.images;
+      this.props.submitSell(newItem);
+    }
   }
-
+  addCategory(e) {
+    e.preventDefault();
+    this.setState({categories: this.state.categories.concat(e.target.value)});
+  }
+  categorize() {
+    if (this.state.title && this.state.description && !this.state.submitted) {
+      this.setState({submitted: true});
+      fetch('/categories/predict', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({text: this.state.title + ' ' + this.state.description})
+      })
+      .then(resp => resp.text())
+      .then(raw => {
+        this.setState({categories: this.state.categories.concat(raw)});
+      });
+      // this.props.getCategories(this.state.title.valueOf() + ' ' + this.state.description.valueOf());
+    }
+  }
   render() {
     const submitFun = (e) => { e.preventDefault(); this.handleForm(); return false; };
     const priceFun = e => this.setState({ price: e.target.value });
     const descFun = e => this.setState({ description: e.target.value });
     const titleFun = e => this.setState({ title: e.target.value });
-
+    const catFun = e => {
+      console.log(this.state.categories);
+      if (e.which === 13) {
+        this.setState({ categories: this.state.categories.concat(e.target.value)});
+        $(e.target).val('');
+      }
+    };
+    const removeFun = e => {
+      let text = $($(e.target).parent()[0]).text().slice(0, -5);
+      this.setState({categories: this.state.categories.filter(category => {
+        console.log(category, text);
+        return category !== text;
+      })});
+    }
     return ((
       <div className="container">
         <div className="row">
-          <form onSubmit={submitFun} id="sell-form" className="sell-item-form col s12">
+          <form id="sell-form" className="sell-item-form col s12">
             <ImageUpload />
             <ImagePreview />
             <div className="row">
               <div className="input-field col s6">
-                <input onChange={titleFun} className="active" type="text" id="title" />
+                <input onChange={titleFun} className="active" type="text" id="title" onBlur={this.categorize.bind(this)}/>
                 <label htmlFor="title">Product Name</label>
               </div>
 
@@ -52,15 +91,26 @@ class sellItemContainer extends React.Component {
 
               <div className="row">
                 <div className="input-field col s12">
-                  <textarea className="materialize-textarea" onChange={descFun} id="description" />
+                  <textarea className="materialize-textarea" onChange={descFun} id="description" onBlur={this.categorize.bind(this)}/>
                   <label className="active" htmlFor="description" >Description</label>
                 </div>
               </div>
 
+              <div className="row">
+                <div className="input-field col s4">
+                  <input className="active" type="text" id="category icon_prefix" onKeyDown={catFun}/>
+                  <label htmlFor="category">Categories</label>
+                </div>
+                {this.state.categories.map((category,index) => {
+                  return (<div className="chip cats" key={index}>{category}<i className="close material-icons" onClick={removeFun}>close</i></div>)
+                })}
+              </div>
 
-              <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+
+              <button className="btn waves-effect waves-light right" type="submit" name="action" onClick={(e)=>{submitFun(e)}}>Submit
                 <i className="material-icons right">send</i>
               </button>
+
 
             </form>
           </div>
