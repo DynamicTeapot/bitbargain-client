@@ -19,6 +19,7 @@ class AppContainer extends React.Component {
     .then(data => data.text())
     .then((resp) => {
       if (resp !== '') {
+        console.log('test');
         try {
           this.props.loginSuccess(JSON.parse(resp));
         } catch (err) {

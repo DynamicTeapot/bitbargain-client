@@ -36,7 +36,7 @@ class sellItemContainer extends React.Component {
   categorize() {
     if (this.state.title && this.state.description && !this.state.submitted) {
       this.setState({submitted: true});
-      fetch('http://localhost:9009/categories/predict', {
+      fetch(`/api/categories/predict`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -107,7 +107,7 @@ class sellItemContainer extends React.Component {
               </div>
 
 
-              <button className="btn waves-effect waves-light right" type="submit" name="action" onClick={(e)=>{submitFun(e)}}>Submit
+              <button className="btn waves-effect waves-light" type="submit" name="action" onClick={(e)=>{submitFun(e)}}>Submit
                 <i className="material-icons right">send</i>
               </button>
 

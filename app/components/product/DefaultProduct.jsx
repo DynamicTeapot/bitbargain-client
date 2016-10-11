@@ -11,17 +11,31 @@ class DefaultProduct extends React.Component {
       bought: false,
       embedCode: null,
       canBuy: true,
-      processing: false
+      processing: false,
+      categories: []
     };
   }
-  // componentDidMount() {
-  //   $('.leftarrow').on('click', (e) => {
-  //     $('.carousel').carousel('prev');
-  //   });
-  //   $('.rightarrow').on('click', (e) => {
-  //     $('.carousel').carousel('next');
-  //   });
-  // }
+  componentDidMount() {
+    try {
+      this.setState({categories: JSON.parse(this.props.product.category)});
+    } catch (err) {
+      var cats = this.props.product.category;
+      if (cats.endsWith(']')) {
+        cats = cats.slice(0, -1);
+      }
+      if (cats.startsWith('[')) {
+        cats = cats.slice(1);
+      }
+      cats = cats.split(',');
+      this.setState({categories: cats});
+    }
+    // $('.leftarrow').on('click', (e) => {
+    //   $('.carousel').carousel('prev');
+    // });
+    // $('.rightarrow').on('click', (e) => {
+    //   $('.carousel').carousel('next');
+    // });
+  }
   buy() {
     if (this.state.canBuy && this.props.loggedIn) {
       this.setState({ processing: true });
@@ -87,9 +101,11 @@ class DefaultProduct extends React.Component {
                 {this.state.processing ? <div className="progress">
                   <div className="indeterminate" />
                 </div> : ''}
-                <div className="chip">
-                  {this.props.product.category}
-                </div>
+                {
+                  this.state.categories.map(cat => {
+                    return (<div className="chip">{this.props.product.category}</div>)
+                  })
+                }
                 <small>
                   <div><center><h4>{ this.props.product.price }</h4><br /></center></div>
                 </small>
