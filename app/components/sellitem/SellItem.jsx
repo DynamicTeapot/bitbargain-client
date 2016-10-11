@@ -36,7 +36,7 @@ class sellItemContainer extends React.Component {
   categorize() {
     if (this.state.title && this.state.description && !this.state.submitted) {
       this.setState({submitted: true});
-      fetch('/categories/predict', {
+      fetch('http://localhost:9009/categories/predict', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
