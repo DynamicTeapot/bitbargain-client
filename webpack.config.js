@@ -4,7 +4,7 @@ const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, 'build');
 // Redirect to localhost if the REDIRECT variable is set
 const REDIRECT = process.env.REDIRECT ? 'http://localhost:9009' : 'http://52.52.22.4';
-console.log('APP DIR is, ', APP_DIR);
+
 const config = {
   entry: './app/routes.jsx',
   output: {
