@@ -1,6 +1,7 @@
 import React from 'react';
 import item from '../../schema';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 const DEFAULT_WIDTH = '80%';
 
@@ -16,6 +17,7 @@ class DefaultProduct extends React.Component {
     };
   }
   componentDidMount() {
+    console.log(this.props.product);
     try {
       this.setState({categories: JSON.parse(this.props.product.category)});
     } catch (err) {
@@ -95,7 +97,8 @@ class DefaultProduct extends React.Component {
               </div>
               <div className="card-action">
                 <div className="right-align">
-                  <a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${this.props.loggedIn && this.state.canBuy ? '' : 'disabled'}`} onClick={this.buy.bind(this)}><i className="material-icons">add_shopping_cart</i></a>
+                  <Link className='waves-effect waves-light btn-button' to='/payment'><i className="material-icons">add_shopping_cart</i></Link>
+                  {/*<a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${this.props.loggedIn && this.state.canBuy ? '' : 'disabled'}`} onClick={this.buy.bind(this)}><i className="material-icons">add_shopping_cart</i></a>*/}
                   {this.state.bought ? <div className="chip"><a className="waves-effect waves-light btn-button buyton" href={`https://www.coinbase.com/checkouts/${this.state.embedCode}`}>Pay With Bitcoin</a></div> : ''}
                 </div>
                 {this.state.processing ? <div className="progress">

@@ -68,7 +68,7 @@ class productContainer extends React.Component {
     this.initCarousel();
   }
   componentWillUnmount() {
-    this.props.clearProduct();
+    // this.props.clearProduct();
   }
   render() {
     if (this.props.loggedIn && this.state.userRole === 'buyer') {

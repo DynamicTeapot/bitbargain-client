@@ -4,9 +4,10 @@ const productInit = {
   description: 'This is a desc of a product',
   category: 'chicken',
   created_at: new Date().toString(),
-  location: 'San Franpyscho',
-  post: 'What',
-  id: 123,
+  price: '10',
+  location: null,
+  post: null,
+  id: null,
   images: ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg']
 };
 
