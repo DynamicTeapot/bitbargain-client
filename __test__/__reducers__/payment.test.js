@@ -11,5 +11,13 @@ test('should return initial state', () => {
     payment: undefined,
     product: undefined,
     reason: undefined
+describe('payment reducer', () => {
+  it('should return initial state', () => {
+    expect(paymentReducer(undefined, {})).toEqual({
+      payment: undefined,
+      product: undefined,
+      reason: undefined
+    });
+  });
   });
 });
