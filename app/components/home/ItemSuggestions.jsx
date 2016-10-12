@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SearchResult from './SearchResult.jsx';
+import SearchResult from '../search/SearchResult.jsx';
 import item from '../../schema';
 
 

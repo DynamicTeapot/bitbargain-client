@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import item from '../schema';
+import item from '../../schema';
 
 
 // TODO: I can't get the default value for images working.

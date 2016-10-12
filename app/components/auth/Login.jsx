@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { mapDispatchToProps } from '../reducers/auth.reducer';
+import { mapDispatchToProps } from '../../reducers/auth.reducer';
 
 // const MapDispatchToProps = dispatch => {
 

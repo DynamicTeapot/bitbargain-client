@@ -74,7 +74,6 @@ render((
         <Route path="login" component={Login} />
         <Route path="sellitem" component={SellItem} />
         <Route path="product/:id" component={Product} />
-        <Route path="dispute" component={Dispute} />
         <Route path="signup" component={Signup} />
         <Route path="*" component={NotFound} />
       </Route>

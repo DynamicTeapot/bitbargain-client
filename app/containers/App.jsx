@@ -1,14 +1,12 @@
-import React from 'react';
-import NavBar from '../components/NavBar.jsx';
-import Footer from '../components/Footer.jsx';
-import Chime from '../components/Chime.jsx';
 import { connect } from 'react-redux';
+import React, { PropTypes } from 'react';
+
+import NavBar from '../components/topbar/NavBar.jsx';
+import Footer from '../components/topbar/Footer.jsx';
+import Chime from '../components/topbar/Chime.jsx';
 import { mapDispatchToProps } from '../reducers/auth.reducer';
 
 class AppContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentWillMount() {
     fetch('/auth/persist', {
       method: 'GET',
@@ -23,8 +21,7 @@ class AppContainer extends React.Component {
       if (resp !== '') {
         try {
           this.props.loginSuccess(JSON.parse(resp));
-        }
-        catch (err) {
+        } catch (err) {
           this.props.loginSuccess(resp);
         }
       }
@@ -35,7 +32,7 @@ class AppContainer extends React.Component {
       <div>
         <div style={{ minHeight: `${89.2}%`, flex: '1 0 auto' }}>
           <NavBar />
-          <Chime />         
+          <Chime />
           {
           React.cloneElement(this.props.children)
           }
@@ -45,6 +42,11 @@ class AppContainer extends React.Component {
     );
   }
 }
+
+AppContainer.propTypes = {
+  loginSuccess: PropTypes.func.isRequired,
+  children: PropTypes.array.isRequired
+};
 
 const App = connect(null, mapDispatchToProps)(AppContainer);
 
