@@ -19,51 +19,41 @@ class SearchResult extends React.Component {
   // We map the items where the a tags are
   render() {
     return (
-      <div className="card col s12 m4 l3 sticky-action">
-        <div className="card-image waves-effect waves-block waves-light">
-          <div className={`carousel carousel-slider carousel${this.props.product.id}`} data-indicators="true">
+      <div className="col s12 m4 l3 sticky-action result-card">
+        <div className="result-image-container">
+          <div className={`carousel carousel-slider search-result-div carousel${this.props.product.id}`} data-indicators="true">
             <div className="carousel-fixed-item center">
               <a className={`left${this.props.product.id}`}><i className="material-icons left">keyboard_arrow_left</i></a>
               <a className={`right${this.props.product.id}`}><i className="material-icons right">keyboard_arrow_right</i></a>
             </div>
-            <a className="carousel-item">
+            {this.props.product.images.map((url) => (<a className="carousel-item">
             <img
               role="presentation"
-              className="activator"
-              src="https://static.pexels.com/photos/131259/pexels-photo-131259-large.jpeg"
+              className="activator search-result-image"
+              src={url}
             />
-            </a>
-            <a className="carousel-item">
-            <img
-              role="presentation"
-              className="activator"
-              src="https://media3.giphy.com/media/mDEWYG76hRNV6/200_s.gif"
-            />
-            </a>
-          </div>
+            </a>))}
+         </div>
         </div>
-        <div className="card-content">
-          <span className="card-title activator grey-text text-darken-4">
-            {`${this.props.product.title.substr(0, 12)}...`}
-            <i className="material-icons right">more_vert</i>
+        <div className="search-result-content">
+          <span className="activator grey-text text-darken-4 truncate">
+            {this.props.product.title}
           </span>
         </div>
-        <div className="card-action">
           <Link className="collection-item" to={`/product/${this.props.product.id}`}>
             Go To Product!
           </Link>
+            <br/>
           <div className="chip">
             Category
           </div>
-        </div>
-        <div className="card-reveal">
+            <br/>
           <span className="card-title grey-text text-darken-4">
             {this.props.product.title}
-            <i className="material-icons right">close</i></span>
+          </span>
           <p>
             {this.props.product.description}
           </p>
-        </div>
       </div>
     );
   }
