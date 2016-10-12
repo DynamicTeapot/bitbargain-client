@@ -6,11 +6,6 @@ import {
 import { paymentReducer } from '../../app/reducers/payment.reducer';
 
 
-test('should return initial state', () => {
-  expect(paymentReducer(undefined, {})).toEqual({
-    payment: undefined,
-    product: undefined,
-    reason: undefined
 describe('payment reducer', () => {
   it('should return initial state', () => {
     expect(paymentReducer(undefined, {})).toEqual({
@@ -19,5 +14,12 @@ describe('payment reducer', () => {
       reason: undefined
     });
   });
+
+  it('should handle MAKE_PAYMENT', () => {
+    expect(paymentReducer({}, { type: MAKE_PAYMENT })).toEqual({
+      payment: 'PENDING',
+      product: undefined,
+      reason: undefined
+    });
   });
 });
