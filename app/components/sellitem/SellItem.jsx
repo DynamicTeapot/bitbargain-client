@@ -17,6 +17,7 @@ class sellItemContainer extends React.Component {
     };
   }
   handleForm(e) {
+    console.log(e.target)
     // /items/sell endpoint
     if(this.state.title && this.state.description && this.state.price) {
       const newItem = this.state;
@@ -106,7 +107,7 @@ class sellItemContainer extends React.Component {
               </div>
 
 
-              <button className="btn waves-effect waves-light" type="submit" name="action" onClick={submitFun}>Submit
+              <button className="btn waves-effect waves-light" type="submit" name="action" onClick={(e) =>submitFun(e)}>Submit
                 <i className="material-icons right">send</i>
               </button>
 

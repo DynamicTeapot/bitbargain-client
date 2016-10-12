@@ -37,8 +37,8 @@ const PaymentContainer = props => {
           </table>
         </div>
         <div className="row">
-          <a onClick={props.makePayment(props.product)} className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">done</i></a>
-          <a onClick={props.goBack} className="btn-floating btn-large waves-effect waves-light red right"><i className="material-icons">close</i></a>
+          <a onClick={props.makePayment(props.product)} className="btn-floating btn-large waves-effect waves-light green right"><i className="material-icons">done</i></a>
+          <a onClick={props.goBack} className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">close</i></a>
         </div>
       </div>
     </div>)
