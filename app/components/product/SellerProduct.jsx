@@ -1,5 +1,5 @@
 import React from 'react';
-import item from '../schema';
+import item from '../../schema';
 
 const DEFAULT_WIDTH = '80%';
 

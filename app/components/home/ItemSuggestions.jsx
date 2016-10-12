@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SearchResult from './SearchResult.jsx';
-import item from '../schema';
+import item from '../../schema';
 
 
 const ItemSuggestionsContainer = props => (
