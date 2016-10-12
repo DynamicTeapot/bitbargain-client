@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/payment.reducer';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/payment.reducer';
 import commaNumber from 'comma-number';
 
 class PaymentContainer extends React.Component {
@@ -21,18 +21,13 @@ class PaymentContainer extends React.Component {
       modalData: ''
     }
   }
-  componentDidMount() {
-    $('.modal-trigger').leanModal({
+  componentWillReceiveProps(nextProps) {
+    $('#result').openModal({
       dismissible: false, // Modal can be dismissed by clicking outside of the modal
       opacity: .5, // Opacity of modal background
-      in_duration: 0, // Transition in duration
-      out_duration: 0, // Transition out duration
-      starting_top: '4%', // Starting top style attribute
-      ending_top: '10%', // Ending top style attribute
+      in_duration: 300, // Transition in duration
+      out_duration: 200,
     });
-  }
-  componentWillReceiveProps(nextProps) {
-    $('#result').openModal();
   }
   render () {
     return (
@@ -79,7 +74,7 @@ class PaymentContainer extends React.Component {
             {this.props.payment.reason ? this.props.payment.reason.toString() : ''}</p>
           </div>
           <div className="modal-footer">
-            <a href="#!" className=" modal-action modal-close waves-effect waves-green btn-flat">O K</a>
+            <Link to='/' className=" modal-action modal-close waves-effect waves-green btn-flat">O K</Link>
           </div>
         </div>
       </div>

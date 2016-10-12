@@ -21,7 +21,7 @@ import SellItem from './components/sellitem/SellItem.jsx';
 import { Product } from './containers/Product.jsx';
 
 import NotFound from './components/NotFound.jsx';
-import Payment from './components/Payment.jsx';
+import Payment from './components/product/Payment.jsx';
 import { Dispute } from './components/Dispute.jsx';
 import { sellItemReducer } from './reducers/sellitem.reducer';
 import { searchReducer } from './reducers/search.reducer';

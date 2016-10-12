@@ -2,7 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router';
 // import item from '../schema';
 import { connect } from 'react-redux';
-import { mapStateToProps, mapDispatchToProps } from '../../reducers/dispute.reducer';
+import { mapStateToProps, mapDispatchToProps } from '../reducers/dispute.reducer';
 
 const timeToRead = 5000;
 

@@ -20,9 +20,9 @@ export function paymentReducer(state = stateInit, action) {
   if (action.type === MAKE_PAYMENT) {
     return Object.assign(newState, state, { payment: 'PENDING' });
   } else if (action.type === PAYMENT_FAILURE) {
-    return Object.assign(newState, state, { payment: 'FAILURE', reason: action.payload });
+    return Object.assign(newState, state, { payment: 'FAILURE', product: '', reason: action.payload });
   } else if (action.type === PAYMENT_SUCCESS) {
-    return Object.assign(newState, state, { payment: 'SUCCESS', product: action.payload });
+    return Object.assign(newState, state, { payment: 'SUCCESS', product: action.payload, reason:''});
   }
 
   return state;
