@@ -31,6 +31,13 @@ export function paymentReducer(state = stateInit, action) {
 export function mapDispatchToProps(dispatch) {
   return {
     makePayment: product => dispatch(makePayment(product)),
-    goBack: dispatch(goBack())
+    goBack: () => dispatch(goBack())
+  };
+}
+export function mapStateToProps(state) {
+  return {
+    product: state.product,
+    loggedIn: state.login.loggedIn,
+    user: state.login.user
   };
 }

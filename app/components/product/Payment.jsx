@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { mapStateToProps } from '../reducers/payment.reducer';
+import { mapStateToProps, mapDispatchToProps } from '../reducers/payment.reducer';
 
 const PaymentContainer = props => {
   return (
@@ -37,13 +37,13 @@ const PaymentContainer = props => {
           </table>
         </div>
         <div className="row">
-          <a className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">done</i></a>
-          <Link to={props.product.id ? `/product/${props.product.id}` : '/'} className="btn-floating btn-large waves-effect waves-light red right"><i className="material-icons">close</i></Link>
+          <a onClick={props.makePayment(props.product)} className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">done</i></a>
+          <a onClick={props.goBack} className="btn-floating btn-large waves-effect waves-light red right"><i className="material-icons">close</i></a>
         </div>
       </div>
     </div>)
 };
 
-const Payment = connect(mapStateToProps)(PaymentContainer);
+const Payment = connect(mapStateToProps, mapDispatchToProps)(PaymentContainer);
 
 export default Payment;
