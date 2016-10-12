@@ -4,7 +4,7 @@ const productInit = {
   description: 'This is a desc of a product',
   category: 'chicken',
   created_at: new Date().toString(),
-  price: '10',
+  price: '1000',
   location: null,
   post: null,
   id: null,

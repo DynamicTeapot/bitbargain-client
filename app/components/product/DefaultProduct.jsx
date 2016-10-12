@@ -17,9 +17,8 @@ class DefaultProduct extends React.Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.product);
     try {
-      this.setState({categories: JSON.parse(this.props.product.category)});
+      this.setState({categories: JSON.parse('"' + this.props.product.category + '"')});
     } catch (err) {
       var cats = this.props.product.category;
       if (cats.endsWith(']')) {
@@ -72,8 +71,8 @@ class DefaultProduct extends React.Component {
                       <a className={'leftarrow'}><i className="material-icons large left">keyboard_arrow_left</i></a>
                       <a className={'rightarrow'}><i className="material-icons large right">keyboard_arrow_right</i></a>
                     </div>
-                    {this.props.product.images.map(url => (
-                      <div className="carousel-item">
+                    {this.props.product.images.map((url, index) => (
+                      <div className="carousel-item" key={index}>
                         <img src={url} role="presentation" className="activator" style={{ width: DEFAULT_WIDTH }} />
                       </div>
                     ))}
@@ -96,8 +95,8 @@ class DefaultProduct extends React.Component {
                 </div>
               </div>
               <div className="card-action">
-                <div className="right-align">
-                  <Link className='waves-effect waves-light btn-button' to='/payment'><i className="material-icons">add_shopping_cart</i></Link>
+                <div className="right-align circle">
+                  <Link to='/payment' className='waves-effect waves-light btn-button'><i className="material-icons">add_shopping_cart</i></Link>
                   {/*<a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${this.props.loggedIn && this.state.canBuy ? '' : 'disabled'}`} onClick={this.buy.bind(this)}><i className="material-icons">add_shopping_cart</i></a>*/}
                   {this.state.bought ? <div className="chip"><a className="waves-effect waves-light btn-button buyton" href={`https://www.coinbase.com/checkouts/${this.state.embedCode}`}>Pay With Bitcoin</a></div> : ''}
                 </div>
@@ -105,8 +104,8 @@ class DefaultProduct extends React.Component {
                   <div className="indeterminate" />
                 </div> : ''}
                 {
-                  this.state.categories.map(cat => {
-                    return (<div className="chip">{this.props.product.category}</div>)
+                  this.state.categories.map((cat,index) => {
+                    return (<div className="chip" key={index}>{this.props.product.category}</div>)
                   })
                 }
                 <small>

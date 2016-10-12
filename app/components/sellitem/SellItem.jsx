@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+// import rates from 'bitcoin-exchange-rates';
 
 import { ImageUpload, ImagePreview } from './ImageUpload.jsx';
 import item from '../../schema';
@@ -95,7 +96,7 @@ class sellItemContainer extends React.Component {
               <div className="row">
                 <div className="input-field col s12">
                   <textarea className="materialize-textarea" onChange={descFun} id="description" onBlur={this.categorize.bind(this)}/>
-                  <label className="active" htmlFor="description" >Description</label>
+                  <label className="active" htmlFor="description">Description</label>
                 </div>
               </div>
 

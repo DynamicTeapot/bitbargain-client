@@ -38,6 +38,7 @@ export function mapStateToProps(state) {
   return {
     product: state.product,
     loggedIn: state.login.loggedIn,
-    user: state.login.user
+    user: state.login.user,
+    payment: state.payment
   };
 }
