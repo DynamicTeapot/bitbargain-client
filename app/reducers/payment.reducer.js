@@ -18,11 +18,11 @@ export function paymentReducer(state = stateInit, action) {
   const newState = {};
 
   if (action.type === MAKE_PAYMENT) {
-    return Object.assign(newState, state, { payment: 'PENDING' });
+    return Object.assign(newState, state, { payment: 'Pending', product: '', reason: ''});
   } else if (action.type === PAYMENT_FAILURE) {
-    return Object.assign(newState, state, { payment: 'FAILURE', product: '', reason: action.payload });
+    return Object.assign(newState, state, { payment: 'Failure', product: 'Failed to purchase product... \n This is likely our fault, we have developers working to fix the issue! \n Try refreshing the page, ensure you are logged in, \n and that you have enough money in your wallet.', reason: action.payload });
   } else if (action.type === PAYMENT_SUCCESS) {
-    return Object.assign(newState, state, { payment: 'SUCCESS', product: action.payload, reason:''});
+    return Object.assign(newState, state, { payment: 'Success', product: action.payload, reason:'Your payment has been sent to the seller, please contact them to receive your item'});
   }
 
   return state;

@@ -24,9 +24,9 @@ class PaymentContainer extends React.Component {
   componentWillReceiveProps(nextProps) {
     $('#result').openModal({
       dismissible: false, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      in_duration: 300, // Transition in duration
-      out_duration: 200,
+      opacity: .2, // Opacity of modal background
+      in_duration: 50, // Transition in duration
+      out_duration: 50,
     });
   }
   render () {
@@ -70,7 +70,7 @@ class PaymentContainer extends React.Component {
          <div id="result" className="modal">
           <div className="modal-content">
             <h4>{this.props.payment.payment}</h4>
-            <p>{this.props.payment.product}<br/>
+            <p>{this.props.payment.product}<hr/>
             {this.props.payment.reason ? this.props.payment.reason.toString() : ''}</p>
           </div>
           <div className="modal-footer">
