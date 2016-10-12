@@ -58,7 +58,6 @@ class sellItemContainer extends React.Component {
     const descFun = e => this.setState({ description: e.target.value });
     const titleFun = e => this.setState({ title: e.target.value });
     const catFun = e => {
-      console.log(this.state.categories);
       if (e.which === 13) {
         this.setState({ categories: this.state.categories.concat(e.target.value)});
         $(e.target).val('');
@@ -67,7 +66,6 @@ class sellItemContainer extends React.Component {
     const removeFun = e => {
       let text = $($(e.target).parent()[0]).text().slice(0, -5);
       this.setState({categories: this.state.categories.filter(category => {
-        console.log(category, text);
         return category !== text;
       })});
     }
