@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchResult from './SearchResult.jsx';
-import item from '../schema';
+import item from '../../schema';
 
 
 function SearchResults(props) {

@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Default from '../components/DefaultProduct.jsx';
-import Buyer from '../components/BuyerProduct.jsx';
-import Seller from '../components/SellerProduct.jsx';
+
+import item from '../schema';
+import Default from '../components/product/DefaultProduct.jsx';
+import Buyer from '../components/product/BuyerProduct.jsx';
+import Seller from '../components/product/SellerProduct.jsx';
 import {
   mapStateToProps,
   mapDispatchToProps,
   productReducer
 } from '../reducers/product.reducer';
-import item from '../schema';
 
 // TODO: Get this to check current product first before loading.
 // TODO: This should redirect in the event of an error.
@@ -40,7 +41,9 @@ class productContainer extends React.Component {
       .then((res) => {
         // set default image if none are present
         if (!res.images) {
-          res.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
+          const newRes = res;
+          newRes.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
+          return newRes;
         }
         return res;
       })

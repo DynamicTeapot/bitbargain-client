@@ -12,12 +12,16 @@ import createLogger from 'redux-logger';
 import { App } from './containers/App.jsx';
 
 import Index from './components/Index.jsx';
-import { Login } from './components/Login.jsx';
+
+import { Login } from './components/auth/Login.jsx';
+import { Signup } from './components/auth/Signup.jsx';
+
+import SellItem from './components/sellitem/SellItem.jsx';
+
 import { Product } from './containers/Product.jsx';
-import { Signup } from './components/Signup.jsx';
-import SellItem from './components/SellItem.jsx';
+
 import NotFound from './components/NotFound.jsx';
-import { Dispute } from './components/Dispute.jsx';
+
 import { sellItemReducer } from './reducers/sellitem.reducer';
 import { searchReducer } from './reducers/search.reducer';
 import { productReducer } from './reducers/product.reducer';
@@ -70,7 +74,6 @@ render((
         <Route path="login" component={Login} />
         <Route path="sellitem" component={SellItem} />
         <Route path="product/:id" component={Product} />
-        <Route path="dispute" component={Dispute} />
         <Route path="signup" component={Signup} />
         <Route path="*" component={NotFound} />
       </Route>

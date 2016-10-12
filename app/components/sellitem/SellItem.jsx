@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { ImageUpload, ImagePreview } from './ImageUpload.jsx';
-import item from '../schema';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/sellitem.reducer';
+import item from '../../schema';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/sellitem.reducer';
 
 class sellItemContainer extends React.Component {
   constructor(props) {

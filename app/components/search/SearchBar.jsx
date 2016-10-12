@@ -4,8 +4,8 @@ import SearchResults from './SearchResults.jsx';
 import {
   mapStateToProps,
   mapDispatchToProps
-} from '../reducers/search.reducer';
-import item from '../schema';
+} from '../../reducers/search.reducer';
+import item from '../../schema';
 
 class SearchBarContainer extends React.Component {
   constructor(props) {

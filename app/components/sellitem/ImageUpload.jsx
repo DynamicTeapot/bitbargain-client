@@ -5,7 +5,7 @@ import {
   UpStateToProps,
   UpDispatchToProps,
   PreStateToProps,
-  PreDispatchToProps } from '../reducers/images.reducer.js';
+  PreDispatchToProps } from '../../reducers/images.reducer.js';
 
 class uploadContainer extends React.Component {
 

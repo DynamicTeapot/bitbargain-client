@@ -1,9 +1,9 @@
 import React from 'react';
-import item from '../schema';
+import item from '../../schema';
 
 const DEFAULT_WIDTH = '80%';
 
-const BuyerProduct = props => (
+const SellerProduct = props => (
   <div className="container">
     <div className="row">
       <div className="col s12 m10 l10">
@@ -40,7 +40,7 @@ const BuyerProduct = props => (
           </div>
           <div className="card-action">
             <div className="right-align">
-              <a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${props.loggedIn ? '' : 'disabled'}`} onClick={() => console.log('canceled')}><i className="material-icons">cancel</i></a>
+              <a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${props.loggedIn ? '' : 'disabled'}`} onClick={() => console.log('Edit order')}><i className="material-icons">mode_edit</i></a>
             </div>
             <div className="chip">
               {props.product.category}
@@ -55,8 +55,8 @@ const BuyerProduct = props => (
   </div>
 );
 
-BuyerProduct.propTypes = {
+SellerProduct.propTypes = {
   product: item
 };
 
-export default BuyerProduct;
+export default SellerProduct;

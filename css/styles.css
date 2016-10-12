@@ -1,0 +1,16 @@
+.carousel-fixed-item {
+  height: 10em;
+  width: 10em; 
+  overflow: hidden
+}
+
+.result-card {
+  height: 25em;
+  overflow: hidden;
+  margin: 0.60em;
+}
+
+.search-result-image {
+  max-width: 100%;
+  max-height: 100%;
+}
