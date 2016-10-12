@@ -17,7 +17,7 @@ class sellItemContainer extends React.Component {
     };
   }
   handleForm(e) {
-    console.log(e.target)
+    console.log('this was called');
     // /items/sell endpoint
     if(this.state.title && this.state.description && this.state.price) {
       const newItem = this.state;
@@ -63,17 +63,20 @@ class sellItemContainer extends React.Component {
         this.setState({ categories: this.state.categories.concat(e.target.value)});
         $(e.target).val('');
       }
+      return false;
     };
     const removeFun = e => {
-      let text = $($(e.target).parent()[0]).text().slice(0, -5);
-      this.setState({categories: this.state.categories.filter(category => {
-        return category !== text;
-      })});
+      let text = $($(e.target).parent()[0]).text();
+      var removeIndex = this.state.categories.findIndex(cat => {
+        return cat === text;
+      });
+      var rmCats = this.state.categories.slice(0, removeIndex).concat(this.state.categories.slice(removeIndex+1));
+      this.setState({categories: rmCats});
     }
     return ((
       <div className="container">
         <div className="row">
-          <form id="sell-form" className="sell-item-form col s12">
+          {/*<form id="sell-form" className="sell-item-form col s12">*/}
             <ImageUpload />
             <ImagePreview />
             <div className="row">
@@ -83,7 +86,7 @@ class sellItemContainer extends React.Component {
               </div>
 
                 <div className="input-field col s6">
-                  <input onChange={priceFun} type="number" className="validate" id="price" min="0.00" />
+                  <input onChange={priceFun} type="number" className="validate" id="price" min="0.00" step='0.01' />
                   <label htmlFor="price">Price($)</label>
                 </div>
               </div>
@@ -102,17 +105,15 @@ class sellItemContainer extends React.Component {
                   <label htmlFor="category">Categories</label>
                 </div>
                 {this.state.categories.map((category,index) => {
-                  return (<div className="chip cats" key={index}>{category}<i className="close material-icons" onClick={removeFun}>close</i></div>)
+                  return (<a onClick={removeFun} key={index}><div className="chip cats">{category}</div></a>)
                 })}
               </div>
 
+                <button className="btn waves-effect waves-light" type="submit" name="action" onClick={submitFun}>Submit
+                  <i className="material-icons right">send</i>
+                </button>
 
-              <button className="btn waves-effect waves-light" type="submit" name="action" onClick={(e) =>submitFun(e)}>Submit
-                <i className="material-icons right">send</i>
-              </button>
-
-
-            </form>
+            {/*</form>*/}
           </div>
         </div>
 
