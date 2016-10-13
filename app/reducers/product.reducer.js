@@ -19,7 +19,7 @@ const productInit = {
 export function productReducer(state = productInit, action) {
   const dispatch = action.type;
 
-  if (dispatch === 'updateProduct') {
+  if (dispatch === UPDATE_PRODUCT) {
     // Should only be used to change info on the current products
     return Object.assign({}, action.product);
   }

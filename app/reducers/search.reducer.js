@@ -1,3 +1,5 @@
+import { CLEAR_RESULTS, UPDATE_RESULTS } from '../actions/search.action';
+
 const searchInit = {
   parameters: [],
   results: []
@@ -13,9 +15,9 @@ const searchInit = {
 export const searchReducer = (state = searchInit, action) => {
   const dispatch = action.type;
 
-  if (dispatch === 'updateResults') {
+  if (dispatch === UPDATE_RESULTS) {
     return Object.assign({}, state, { results: action.results });
-  } else if (dispatch === 'clearResults') {
+  } else if (dispatch === CLEAR_RESULTS) {
     return Object.assign({}, searchInit);
   }
   return state;
@@ -28,9 +30,9 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   clearResults: () => {
-    dispatch({ type: 'clearResults' });
+    dispatch({ type: CLEAR_RESULTS });
   },
   updateResults: (data) => {
-    dispatch({ type: 'updateResults', results: data });
+    dispatch({ type: UPDATE_RESULTS, results: data });
   }
 });
