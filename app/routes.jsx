@@ -78,7 +78,7 @@ render((
         <Route path="sellitem" component={SellItem} />
         <Route path="product/:id" component={Product} />
         <Route path="signup" component={Signup} />
-        <Route path="payment" component={Payment} />
+        <Route path="payment/:id" component={Payment} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

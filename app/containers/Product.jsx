@@ -31,24 +31,25 @@ class productContainer extends React.Component {
     };
   }
   componentWillMount() {
+      
     fetch(`/api/items/${this.props.params.id}`, {
       credentials: 'include'
     })
-      .then(res => {
-        console.log(`Response from server, ${res}`);
-        return res.json();
-      })
-      .then((res) => {
-        // set default image if none are present
-        if (!res.images) {
-          const newRes = res;
-          newRes.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
-          return newRes;
-        }
-        return res;
-      })
-      .then(res => this.props.updateProduct(res))
-      .catch(err => console.error(err));
+    .then(res => {
+      console.log(`Response from server, ${res}`);
+      return res.json();
+    })
+    .then((res) => {
+      // set default image if none are present
+      if (!res.images) {
+        const newRes = res;
+        newRes.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
+        return newRes;
+      }
+      return res;
+    })
+    .then(res => this.props.updateProduct(res))
+    .catch(err => console.error(err));
   }
   componentDidMount() {
     this.initCarousel();
@@ -62,13 +63,13 @@ class productContainer extends React.Component {
         console.log(res);
         this.setState({ userRole: res.role });
       })
-      .catch(err => console.err(err));
+      .catch(err => console.log(err));
   }
   componentDidUpdate() {
     this.initCarousel();
   }
   componentWillUnmount() {
-    // this.props.clearProduct();
+    this.props.clearProduct();
   }
   render() {
     if (this.props.loggedIn && this.state.userRole === 'buyer') {

@@ -17,17 +17,39 @@ class PaymentContainer extends React.Component {
       retval[0] = commaNumber(retval[0]);
       return '$' + retval.join('.');
     }
-    this.state = {
-      modalData: ''
-    }
+  }
+  componentWillMount() {
+    fetch(`/api/items/${this.props.params.id}`, {
+      credentials: 'include'
+    })
+    .then(res => {
+      console.log(`Response from server, ${res}`);
+      return res.json();
+    })
+    .then((res) => {
+      // set default image if none are present
+      if (!res.images) {
+        const newRes = res;
+        newRes.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
+        return newRes;
+      }
+      return res;
+    })
+    .then(res => this.props.updateProduct(res))
+    .catch(err => console.error(err));
+  }
+  componentWillUnmount() {
+    this.props.clearProduct();
   }
   componentWillReceiveProps(nextProps) {
-    $('#result').openModal({
-      dismissible: false, // Modal can be dismissed by clicking outside of the modal
-      opacity: .2, // Opacity of modal background
-      in_duration: 50, // Transition in duration
-      out_duration: 50,
-    });
+    if (nextProps.payment.payment && nextProps.payment.product && nextProps.payment.reason) {
+      $('#result').openModal({
+        dismissible: false, // Modal can be dismissed by clicking outside of the modal
+        opacity: .2, // Opacity of modal background
+        in_duration: 50, // Transition in duration
+        out_duration: 50,
+      });
+    }
   }
   render () {
     return (
@@ -70,8 +92,9 @@ class PaymentContainer extends React.Component {
          <div id="result" className="modal">
           <div className="modal-content">
             <h4>{this.props.payment.payment}</h4>
-            <p>{this.props.payment.product}<hr/>
-            {this.props.payment.reason ? this.props.payment.reason.toString() : ''}</p>
+            {this.props.payment.product}
+            <hr/>
+            {this.props.payment.reason ? this.props.payment.reason.toString() : ''}
           </div>
           <div className="modal-footer">
             <Link to='/' className=" modal-action modal-close waves-effect waves-green btn-flat">O K</Link>
