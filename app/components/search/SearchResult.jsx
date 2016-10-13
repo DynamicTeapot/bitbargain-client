@@ -40,16 +40,15 @@ class SearchResult extends React.Component {
     return (
       <div className="col s3 m3 l3 center">
         <div className="card">
-          <span className="flow-text truncate"><small>{this.props.product.title}</small></span>
+          <Link to={`/product/${this.props.product.id}`}>
+            <span className="flow-text truncate"><small>{this.props.product.title}</small></span>
+          </Link>
           <div className="card-image valign-wrapper" style={{height:200, overflow:'hidden'}}>
             <img className="responsive-img hoverable valign" onMouseOver={(e)=>{this.imageHover(e)}} onMouseOut={(e)=>{this.imageUnhover(e)}} src={this.props.product.images[this.state.imageIndex]} onClick={this.imageClick.bind(this)}/>
           </div>
           <Link to={`/product/${this.props.product.id}`}>
             <div className="card-action">
               <span className="flow-text truncate"><small>{`$${Number(this.props.product.price).toFixed(2)}`}</small></span>
-              <hr/>
-              <i className="material-icons right">info</i>
-              <p></p>
             </div>
           </Link>
         </div>

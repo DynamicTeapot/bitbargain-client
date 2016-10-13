@@ -10,7 +10,7 @@ import {
   mapDispatchToProps,
   productReducer
 } from '../reducers/product.reducer';
-
+import enums from '../components/product/ProductEnums';
 // TODO: Get this to check current product first before loading.
 // TODO: This should redirect in the event of an error.
 
@@ -42,8 +42,7 @@ class productContainer extends React.Component {
     })
       .then(res => res.json())
       .then((res) => {
-        console.log(res);
-        this.setState({ userRole: res.role });
+        this.setState({ userRole: res.role.toUpperCase() });
       })
       .catch(err => console.log(err));
   }
@@ -54,28 +53,9 @@ class productContainer extends React.Component {
     this.props.clearProduct();
   }
   render() {
-    if (this.props.loggedIn && this.state.userRole === 'buyer') {
-      console.log('buyer');
-      return (
-        <Buyer
-          loggedIn={this.props.loggedIn}
-          updateProduct={this.props.updateProduct}
-          product={this.props.product}
-        />
-      );
-    }
-    if (this.props.loggedIn && this.state.userRole === 'seller') {
-      console.log('seller');
-      return (
-        <Seller
-          loggedIn={this.props.loggedIn}
-          updateProduct={this.props.updateProduct}
-          product={this.props.product}
-        />
-      );
-    }
     return (
       <Default
+        role={this.state.userRole}
         loggedIn={this.props.loggedIn}
         updateProduct={this.props.updateProduct}
         product={this.props.product}
