@@ -1,5 +1,6 @@
 import React from 'react';
 import item from '../../schema';
+import CardBottom from './components/CardBottom.jsx';
 
 const DEFAULT_WIDTH = '80%';
 
@@ -28,27 +29,7 @@ const BuyerProduct = props => (
               { props.product.title }
             </span></center>
           </div>
-          <div className="card-reveal">
-            <span className="card-title grey-text text-darken-4">{props.product.title}<i className="material-icons right">close</i></span>
-            <div>
-              {props.product.description}<br />
-              <div className="divider" />
-              <h5>{props.product.location }</h5><br />
-              { `Submitted on ${(new Date(props.product.created_at)).toLocaleString()}` }<br />
-              { `Last Updated ${(new Date(props.product.updated_at)).toLocaleString()}` }<br />
-            </div>
-          </div>
-          <div className="card-action">
-            <div className="right-align">
-              <a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${props.loggedIn ? '' : 'disabled'}`} onClick={() => console.log('canceled')}><i className="material-icons">cancel</i></a>
-            </div>
-            <div className="chip">
-              {props.product.category}
-            </div>
-            <small>
-              <div><center><h4>{ props.product.price }</h4><br /></center></div>
-            </small>
-          </div>
+          <cardBottom/>
         </div>
       </div>
     </div>

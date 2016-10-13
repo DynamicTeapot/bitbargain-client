@@ -48,7 +48,7 @@ class SearchResult extends React.Component {
             <div className="card-action">
               <span className="flow-text truncate"><small>{`$${Number(this.props.product.price).toFixed(2)}`}</small></span>
               <hr/>
-              <Link to={`/product/${this.props.product.id}`}><i className="material-icons right">info</i></Link>
+              <i className="material-icons right">info</i>
               <p></p>
             </div>
           </Link>

@@ -19,7 +19,7 @@ class NavBar extends React.Component {
   componentDidMount() {
     $('.button-collapse').sideNav();
     this.updateTabs(this.props);
-    $('nav').pushpin({ top: $('nav').offset().top + 50});
+    $('#realNav').pushpin({ top: $('nav').offset().top});
   }
   componentWillReceiveProps(newProps) {
     this.updateTabs(newProps);
@@ -142,24 +142,27 @@ class NavBar extends React.Component {
     });
 
     return (
-      <nav style={{zIndex: 10}}>
-        <div className="nav-wrapper cyan">
-          <a data-activates="mobile" className="button-collapse">
-            <i className="material-icons">menu</i>
-          </a>
-          <a className="brand-logo center">
-            {this.props.user !== 'Anonymous' ? this.props.user : 'Bit Bargain'}</a>
-          <ul className="left hide-on-med-and-down">
-            {tabsLeft}
-          </ul>
-          <ul className="right hide-on-med-and-down">
-            {tabsRight}
-          </ul>
-          <ul className="side-nav" id="mobile">
-            {mobile}
-          </ul>
-        </div>
-      </nav>
+      <div>
+        <nav></nav>
+        <nav style={{zIndex: 10}} id='realNav'>
+          <div className="nav-wrapper cyan">
+            <a data-activates="mobile" className="button-collapse">
+              <i className="material-icons">menu</i>
+            </a>
+            <a className="brand-logo center">
+              {this.props.user !== 'Anonymous' ? this.props.user : 'Bit Bargain'}</a>
+            <ul className="left hide-on-med-and-down">
+              {tabsLeft}
+            </ul>
+            <ul className="right hide-on-med-and-down">
+              {tabsRight}
+            </ul>
+            <ul className="side-nav" id="mobile">
+              {mobile}
+            </ul>
+          </div>
+        </nav>
+      </div>
     );
   }
 }
