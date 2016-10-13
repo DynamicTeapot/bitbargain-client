@@ -1,5 +1,5 @@
 import React from 'react';
-import enums from './ProductEnums';
+import enums from '../ProductEnums.js';
 const DEFAULT_WIDTH = '80%';
 
 const CardTitle = props => {

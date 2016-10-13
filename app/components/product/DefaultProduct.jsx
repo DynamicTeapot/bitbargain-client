@@ -3,8 +3,7 @@ import item from '../../schema';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import commaNumber from 'comma-number';
-import { CardAction, CardReveal } from './components/CardBottom.jsx';
-import { CardTitle, CardImage } from './components/CardTop.jsx';
+import { CardTitle, CardImage, CardAction, CardReveal } from './components/CardComponents.jsx';
 import enums from './ProductEnums';
 
 const DEFAULT_WIDTH = '80%';
