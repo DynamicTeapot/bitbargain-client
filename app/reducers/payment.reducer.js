@@ -5,7 +5,10 @@ import {
   PAYMENT_FAILURE,
   makePayment
 } from '../actions/payment.action';
-
+import {
+  UPDATE_PRODUCT,
+  fetchItem
+} from '../actions/product.action';
 
 const stateInit = {
   payment: undefined,
@@ -32,12 +35,8 @@ export function mapDispatchToProps(dispatch) {
   return {
     makePayment: product => dispatch(makePayment(product)),
     goBack: () => dispatch(goBack()),
-    updateProduct: (data) => {
-      dispatch({ type: 'updateProduct', product: data });
-    },
-    clearProduct: () => {
-      dispatch({ type: 'CLEAR', product: {} });
-    }
+    updateProduct: itemID => dispatch(fetchItem(itemID)),
+    clearProduct: () => dispatch({ type: 'CLEAR', product: {} })
   };
 }
 export function mapStateToProps(state) {

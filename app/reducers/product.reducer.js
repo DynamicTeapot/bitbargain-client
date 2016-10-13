@@ -1,3 +1,8 @@
+import {
+  UPDATE_PRODUCT,
+  fetchItem
+} from '../actions/product.action';
+
 const productInit = {
   title: 'This is the name of a product',
   seller: 'SELLER NAME',
@@ -34,11 +39,7 @@ export function mapStateToProps(state) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    updateProduct: (data) => {
-      dispatch({ type: 'updateProduct', product: data });
-    },
-    clearProduct: () => {
-      dispatch({ type: 'CLEAR', product: {} });
-    }
+    updateProduct: itemID => dispatch(fetchItem(itemID)),
+    clearProduct: () => dispatch({ type: 'CLEAR', product: {} })
   };
 }
