@@ -26,7 +26,7 @@ export function makePayment(product) {
       body: JSON.stringify(product)
     };
 
-    fetch('/api/payments', options)
+    fetch('/api/items/transaction', options)
       .then(res => res.json())
       .then(res => dispatch(paymentHandler(res, PAYMENT_SUCCESS)))
       .catch(e => dispatch(paymentHandler(e, PAYMENT_FAILURE)));

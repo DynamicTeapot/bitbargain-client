@@ -21,7 +21,8 @@ import SellItem from './components/sellitem/SellItem.jsx';
 import { Product } from './containers/Product.jsx';
 
 import NotFound from './components/NotFound.jsx';
-
+import Payment from './components/product/Payment.jsx';
+import { Dispute } from './components/Dispute.jsx';
 import { sellItemReducer } from './reducers/sellitem.reducer';
 import { searchReducer } from './reducers/search.reducer';
 import { productReducer } from './reducers/product.reducer';
@@ -29,6 +30,7 @@ import { loginReducer } from './reducers/auth.reducer';
 import { disputeReducer } from './reducers/dispute.reducer';
 import { imageReducer } from './reducers/images.reducer.js';
 import { suggestionsReducer } from './reducers/suggestions.reducer.js';
+import { paymentReducer } from './reducers/payment.reducer.js';
 
 const rootReducer = combineReducers(
   {
@@ -39,7 +41,8 @@ const rootReducer = combineReducers(
     sellitem: sellItemReducer,
     dispute: disputeReducer,
     image: imageReducer,
-    itemSuggestions: suggestionsReducer
+    itemSuggestions: suggestionsReducer,
+    payment: paymentReducer
   }
 );
 
@@ -75,6 +78,7 @@ render((
         <Route path="sellitem" component={SellItem} />
         <Route path="product/:id" component={Product} />
         <Route path="signup" component={Signup} />
+        <Route path="payment/:id" component={Payment} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>
