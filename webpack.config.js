@@ -24,12 +24,12 @@ const config = {
         secure: false
       }
     },
+    plugins: [
+      new DashboardPlugin()
+    ],
     port: 3000,
     historyApiFallback: true
   },
-  plugins: [
-    new DashboardPlugin()
-  ],
   module: {
     loaders: [
       {
