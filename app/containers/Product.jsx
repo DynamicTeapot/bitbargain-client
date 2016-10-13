@@ -31,25 +31,7 @@ class productContainer extends React.Component {
     };
   }
   componentWillMount() {
-      
-    fetch(`/api/items/${this.props.params.id}`, {
-      credentials: 'include'
-    })
-    .then(res => {
-      console.log(`Response from server, ${res}`);
-      return res.json();
-    })
-    .then((res) => {
-      // set default image if none are present
-      if (!res.images) {
-        const newRes = res;
-        newRes.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
-        return newRes;
-      }
-      return res;
-    })
-    .then(res => this.props.updateProduct(res))
-    .catch(err => console.error(err));
+    this.props.updateProduct(this.props.params.id);
   }
   componentDidMount() {
     this.initCarousel();

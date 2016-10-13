@@ -1,28 +1,29 @@
-export const UPDATE_PRODUCT = 'MAKE_PAYMENT';
+export const UPDATE_PRODUCT = 'updateProduct';
 
 export function fetchItem(itemID) {
   return (dispatch) => {
-    const options = {
-      credentials: 'include',
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(product)
-    };
 
-    fetch(`/api/items/${this.props.params.id}`, options)
-      .then(res => res.json())
-      .then(res => dispatch(paymentHandler(res, PAYMENT_SUCCESS)))
+
+    fetch(`/api/items/${itemID}`, {
+      credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(res => {
+      // set default image if none are present
+      if (!res.images) {
+        const newRes = res;
+        newRes.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
+        return newRes;
+      }
+      return res;
+    })
+    .then(res => dispatch(productHandler(res, UPDATE_PRODUCT)))
+    .catch(err => console.log(err));
   };
 }
 
-export const MAKE_PAYMENT = 'MAKE_PAYMENT';
-export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
-export const PAYMENT_FAILURE = 'PAYMENT_FAILURE';
 
 
 export function productHandler(res, status) {
-  return dispatch => dispatch({ type: status, payload: res });
+  return dispatch => dispatch({ type: status, product: res });
 }

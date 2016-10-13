@@ -19,6 +19,7 @@ class NavBar extends React.Component {
   componentDidMount() {
     $('.button-collapse').sideNav();
     this.updateTabs(this.props);
+    $('#realNav').pushpin({ top: $('nav').offset().top});
   }
   componentWillReceiveProps(newProps) {
     this.updateTabs(newProps);
@@ -129,33 +130,39 @@ class NavBar extends React.Component {
       return '';
     });
 
-    const mobile = this.state.tabMap.map((tab, index) => (
-      <li key={index}>
+    const mobile = this.state.tabMap.map((tab, index) => {
+      if(tab.link === 'special') {
+        return tab.data;
+      }
+      return (<li key={index}>
         <Link to={tab.link}>
           {tab.title}
         </Link>
-      </li>
-    ));
+      </li>)
+    });
 
     return (
-      <nav>
-        <div className="nav-wrapper cyan">
-          <a data-activates="mobile" className="button-collapse">
-            <i className="material-icons">menu</i>
-          </a>
-          <a className="brand-logo center">
-            {this.props.user !== 'Anonymous' ? this.props.user : 'Bit Bargain'}</a>
-          <ul className="left hide-on-med-and-down">
-            {tabsLeft}
-          </ul>
-          <ul className="right hide-on-med-and-down">
-            {tabsRight}
-          </ul>
-          <ul className="side-nav" id="mobile">
-            {mobile}
-          </ul>
-        </div>
-      </nav>
+      <div>
+        <nav></nav>
+        <nav style={{zIndex: 10}} id='realNav'>
+          <div className="nav-wrapper cyan">
+            <a data-activates="mobile" className="button-collapse">
+              <i className="material-icons">menu</i>
+            </a>
+            <a className="brand-logo center">
+              {this.props.user !== 'Anonymous' ? this.props.user : 'Bit Bargain'}</a>
+            <ul className="left hide-on-med-and-down">
+              {tabsLeft}
+            </ul>
+            <ul className="right hide-on-med-and-down">
+              {tabsRight}
+            </ul>
+            <ul className="side-nav" id="mobile">
+              {mobile}
+            </ul>
+          </div>
+        </nav>
+      </div>
     );
   }
 }
