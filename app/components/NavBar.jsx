@@ -37,7 +37,7 @@ class NavBar extends React.Component {
         tabMap:
         [{ title: 'Home', link: '', align: 'left' },
          { title: 'Sell', link: '/sellitem', align: 'left' },
-         { title: 'Dispute', link: '/dispute', align: 'left' },
+         // { title: 'Dispute', link: '/dispute', align: 'left' },
          { title: 'coin', link: 'special', align: 'right', data: <li key={'coin'} className={`${'right'}`}><a href="/auth/login/coinbase"><i className="material-icons">monetization_on</i></a></li> },
          { title: 'Signout', link: 'special', align: 'right', data: <li key={'signouot'} className={`${'right'}`}><a href="/auth/logout"><i className="material-icons">exit_to_app</i></a></li>}]
       });
@@ -46,7 +46,7 @@ class NavBar extends React.Component {
         tabMap:
         [{ title: 'Home', link: '', align: 'left' },
          { title: 'Sell', link: '/sellitem', align: 'left' },
-         { title: 'Dispute', link: '/dispute', align: 'left' },
+         // { title: 'Dispute', link: '/dispute', align: 'left' },
          { title: 'coin', link: 'special', align: 'right', data: <li key={'coin'} className={`${'right'}`}><a href="/auth/login/coinbase"><i className="material-icons">monetization_on</i></a></li>},
          { title: 'Sign Up', link: '/signup', align: 'right' },
          { title: 'Login', link: '/login', align: 'right' }]

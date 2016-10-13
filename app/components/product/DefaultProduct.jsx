@@ -1,6 +1,8 @@
 import React from 'react';
-import item from '../schema';
+import item from '../../schema';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import commaNumber from 'comma-number';
 
 const DEFAULT_WIDTH = '80%';
 
@@ -11,17 +13,24 @@ class DefaultProduct extends React.Component {
       bought: false,
       embedCode: null,
       canBuy: true,
-      processing: false
+      processing: false,
+      categories: []
     };
   }
-  // componentDidMount() {
-  //   $('.leftarrow').on('click', (e) => {
-  //     $('.carousel').carousel('prev');
-  //   });
-  //   $('.rightarrow').on('click', (e) => {
-  //     $('.carousel').carousel('next');
-  //   });
-  // }
+  componentDidMount() {
+    try {
+      this.setState({categories: this.state.categories.concat(JSON.parse('"' + this.props.product.category + '"'))});
+    } catch (err) {
+      var cats = this.props.product.category;
+      this.setState({categories: this.state.categories.concat([cats])});
+    }
+    // $('.leftarrow').on('click', (e) => {
+    //   $('.carousel').carousel('prev');
+    // });
+    // $('.rightarrow').on('click', (e) => {
+    //   $('.carousel').carousel('next');
+    // });
+  }
   buy() {
     if (this.state.canBuy && this.props.loggedIn) {
       this.setState({ processing: true });
@@ -56,8 +65,8 @@ class DefaultProduct extends React.Component {
                       <a className={'leftarrow'}><i className="material-icons large left">keyboard_arrow_left</i></a>
                       <a className={'rightarrow'}><i className="material-icons large right">keyboard_arrow_right</i></a>
                     </div>
-                    {this.props.product.images.map(url => (
-                      <div className="carousel-item">
+                    {this.props.product.images.map((url, index) => (
+                      <div className="carousel-item" key={index}>
                         <img src={url} role="presentation" className="activator" style={{ width: DEFAULT_WIDTH }} />
                       </div>
                     ))}
@@ -80,16 +89,20 @@ class DefaultProduct extends React.Component {
                 </div>
               </div>
               <div className="card-action">
-                <div className="right-align">
-                  <a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${this.props.loggedIn && this.state.canBuy ? '' : 'disabled'}`} onClick={this.buy.bind(this)}><i className="material-icons">add_shopping_cart</i></a>
+                <div className="right-align circle">
+                  <Link to={`/payment/${this.props.product.id}`} className='waves-effect waves-light btn-button'><i className="material-icons">add_shopping_cart</i></Link>
+                  {/*<a className={`btn-floating btn-large waves-effect waves-light green accent-3 right ${this.props.loggedIn && this.state.canBuy ? '' : 'disabled'}`} onClick={this.buy.bind(this)}><i className="material-icons">add_shopping_cart</i></a>*/}
                   {this.state.bought ? <div className="chip"><a className="waves-effect waves-light btn-button buyton" href={`https://www.coinbase.com/checkouts/${this.state.embedCode}`}>Pay With Bitcoin</a></div> : ''}
                 </div>
                 {this.state.processing ? <div className="progress">
                   <div className="indeterminate" />
                 </div> : ''}
-                <div className="chip">
-                  {this.props.product.category}
-                </div>
+                {()=>{console.log(this.state.categories)}}
+                {
+                  this.state.categories.map((cat,index) => {
+                    return (<div className="chip" key={index}>{this.props.product.category}</div>)
+                  })
+                }
                 <small>
                   <div><center><h4>{ this.props.product.price }</h4><br /></center></div>
                 </small>

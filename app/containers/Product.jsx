@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Default from '../components/DefaultProduct.jsx';
-import Buyer from '../components/BuyerProduct.jsx';
-import Seller from '../components/SellerProduct.jsx';
+
+import item from '../schema';
+import Default from '../components/product/DefaultProduct.jsx';
+import Buyer from '../components/product/BuyerProduct.jsx';
+import Seller from '../components/product/SellerProduct.jsx';
 import {
   mapStateToProps,
   mapDispatchToProps,
   productReducer
 } from '../reducers/product.reducer';
-import item from '../schema';
 
 // TODO: Get this to check current product first before loading.
 // TODO: This should redirect in the event of an error.
@@ -30,22 +31,25 @@ class productContainer extends React.Component {
     };
   }
   componentWillMount() {
+      
     fetch(`/api/items/${this.props.params.id}`, {
       credentials: 'include'
     })
-      .then(res => {
-        console.log(`Response from server, ${res}`);
-        return res.json();
-      })
-      .then((res) => {
-        // set default image if none are present
-        if (!res.images) {
-          res.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
-        }
-        return res;
-      })
-      .then(res => this.props.updateProduct(res))
-      .catch(err => console.error(err));
+    .then(res => {
+      console.log(`Response from server, ${res}`);
+      return res.json();
+    })
+    .then((res) => {
+      // set default image if none are present
+      if (!res.images) {
+        const newRes = res;
+        newRes.images = ['http://lorempixel.com/output/nature-q-c-640-480-10.jpg'];
+        return newRes;
+      }
+      return res;
+    })
+    .then(res => this.props.updateProduct(res))
+    .catch(err => console.error(err));
   }
   componentDidMount() {
     this.initCarousel();
@@ -59,7 +63,7 @@ class productContainer extends React.Component {
         console.log(res);
         this.setState({ userRole: res.role });
       })
-      .catch(err => console.err(err));
+      .catch(err => console.log(err));
   }
   componentDidUpdate() {
     this.initCarousel();

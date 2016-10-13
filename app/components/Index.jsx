@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchBar from './SearchBar.jsx';
-import ItemSuggestions from './ItemSuggestions.jsx';
+import SearchBar from './search/SearchBar.jsx';
+import ItemSuggestions from './home/ItemSuggestions.jsx';
 
 
 // TODO: Add geo-location selector.
