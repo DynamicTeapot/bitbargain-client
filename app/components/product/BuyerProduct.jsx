@@ -1,6 +1,5 @@
 import React from 'react';
 import item from '../../schema';
-import CardBottom from './components/CardBottom.jsx';
 
 const DEFAULT_WIDTH = '80%';
 
