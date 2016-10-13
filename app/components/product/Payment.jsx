@@ -7,9 +7,11 @@ import commaNumber from 'comma-number';
 class PaymentContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.price = Number(this.props.product.price);
-    this.fee = ((Number(this.price) || 0) * .01);
-    this.total = this.price + this.fee;
+    this.state = {
+      price: 0,
+      fee: 0,
+      total: 0
+    }
     this.prettifyNumber = num => {
       let retval = num.toFixed(2);
       retval = retval.toString();
@@ -23,8 +25,18 @@ class PaymentContainer extends React.Component {
   }
   componentWillUnmount() {
     this.props.clearProduct();
+    this.props.clearPayment();
   }
   componentWillReceiveProps(nextProps) {
+    let newState = {
+      price: Number(nextProps.product.price),
+      fee: ((Number(nextProps.product.price) || 0) * .01)
+    }
+    this.setState({
+      price: newState.price,
+      fee: newState.fee,
+      total: newState.price + newState.fee
+    });
     if (nextProps.payment.payment && nextProps.payment.product && nextProps.payment.reason) {
       $('#result').openModal({
         dismissible: false, // Modal can be dismissed by clicking outside of the modal
@@ -50,7 +62,7 @@ class PaymentContainer extends React.Component {
               <tbody>
                 <tr>
                   <td>{this.props.product.title}</td>
-                  <td className="right">{this.prettifyNumber(this.price)}</td>
+                  <td className="right">{this.prettifyNumber(this.state.price)}</td>
                 </tr>
                 {/*<tr>
                   <td>Shipping</td>
@@ -58,11 +70,11 @@ class PaymentContainer extends React.Component {
                 </tr>*/}
                 <tr>
                   <td>Fee</td>
-                  <td className="right">{this.prettifyNumber(this.fee)}</td>
+                  <td className="right">{this.prettifyNumber(this.state.fee)}</td>
                 </tr>
                   <tr style={{borderTop:'1px solid', borderColor:'#D3D3D3'}}>
                     <td><b>Total</b></td>
-                    <td className="right"><b>{this.prettifyNumber(this.total)}</b></td>
+                    <td className="right"><b>{this.prettifyNumber(this.state.total)}</b></td>
                   </tr>
               </tbody>
             </table>

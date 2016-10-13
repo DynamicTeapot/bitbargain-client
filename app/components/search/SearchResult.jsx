@@ -7,6 +7,12 @@ import item from '../../schema';
 
 
 class SearchResult extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageIndex: 0
+    }
+  }
   componentDidMount() {
     $('.carousel.carousel-slider').carousel({ full_width: true });
     $(`.left${this.props.product.id}`).on('click', (e) => {
@@ -16,12 +22,43 @@ class SearchResult extends React.Component {
       $(`.carousel${this.props.product.id}`).carousel('next');
     });
   }
+  imageClick() {
+    var nextIndex = (this.state.imageIndex + 1) % this.props.product.images.length;
+    this.setState({imageIndex: nextIndex});
+  }
+  imageHover(e) {
+    if (this.props.product.images.length > 1) {
+      $(e.target).animate({ opacity: 0.7 }, 100);
+    }
+  }
+  imageUnhover(e) {
+    $(e.target).animate({ opacity: 1 }, 100);
+  }
   // Here's a sweet comment
   // We map the items where the a tags are
   render() {
     return (
-      <div className="col s12 m4 l3 sticky-action result-card">
-      <Link className="collection-item" to={`/product/${this.props.product.id}`}>
+      <div className="col s3 m3 l3 center">
+        <div className="card">
+          <span className="flow-text truncate"><small>{this.props.product.title}</small></span>
+          <div className="card-image valign-wrapper" style={{height:200, overflow:'hidden'}}>
+            <img className="responsive-img hoverable valign" onMouseOver={(e)=>{this.imageHover(e)}} onMouseOut={(e)=>{this.imageUnhover(e)}} src={this.props.product.images[this.state.imageIndex]} onClick={this.imageClick.bind(this)}/>
+          </div>
+          <Link to={`/product/${this.props.product.id}`}>
+            <div className="card-action">
+              <span className="flow-text truncate"><small>{`$${Number(this.props.product.price).toFixed(2)}`}</small></span>
+              <hr/>
+              <Link to={`/product/${this.props.product.id}`}><i className="material-icons right">info</i></Link>
+              <p></p>
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+}
+      
+      {/*<Link className="collection-item" to={`/product/${this.props.product.id}`}>
        <div className="search-result-content">
           <span className="activator grey-text text-darken-4 truncate">
             {this.props.product.title}
@@ -31,8 +68,6 @@ class SearchResult extends React.Component {
         <div className="result-image-container">
           <div className={`carousel carousel-slider search-result-div carousel${this.props.product.id}`} data-indicators="true">
             <div className="carousel-fixed-item center">
-              <a className={`left${this.props.product.id}`}><i className="material-icons left">keyboard_arrow_left</i></a>
-              <a className={`right${this.props.product.id}`}><i className="material-icons right">keyboard_arrow_right</i></a>
           j </div>
             {this.props.product.images.map((url) => (<a className="carousel-item">
             <img
@@ -44,13 +79,9 @@ class SearchResult extends React.Component {
          </div>
         </div>
          <div className="chip">
-            Category
+            {this.props.product.category || 'No Categories'}
           </div>
-          </Link>
-        </div>
-    );
-  }
-}
+          </Link>*/}
 
 
 SearchResult.propTypes = {

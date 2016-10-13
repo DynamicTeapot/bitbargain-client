@@ -26,6 +26,8 @@ export function paymentReducer(state = stateInit, action) {
     return Object.assign(newState, state, { payment: 'Failure', product: 'Failed to purchase product... \n This is likely our fault, we have developers working to fix the issue! \n Try refreshing the page, ensure you are logged in, \n and that you have enough money in your wallet.', reason: action.payload });
   } else if (action.type === PAYMENT_SUCCESS) {
     return Object.assign(newState, state, { payment: 'Success', product: action.payload, reason:'Your payment has been sent to the seller, please contact them to receive your item.'});
+  } else if (action.type === 'CLEAR_PAYMENT') {
+    return Object.assign(newState, state, { payment: undefined, product: undefined, reason: undefined});
   }
 
   return state;
@@ -34,6 +36,7 @@ export function paymentReducer(state = stateInit, action) {
 export function mapDispatchToProps(dispatch) {
   return {
     makePayment: product => dispatch(makePayment(product)),
+    clearPayment: () => dispatch({type: 'CLEAR_PAYMENT'}),
     goBack: () => dispatch(goBack()),
     updateProduct: itemID => dispatch(fetchItem(itemID)),
     clearProduct: () => dispatch({ type: 'CLEAR', product: {} })
