@@ -1,5 +1,10 @@
+# node stuffs
 node_modules/
 npm-debug.log
 
+# yarn lockfile
+yarn.lock
+
+# bundle
 bundle.js
 bundle.js.map

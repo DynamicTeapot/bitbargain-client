@@ -3,10 +3,12 @@ import {
   MAKE_PAYMENT,
   PAYMENT_SUCCESS,
   PAYMENT_FAILURE,
+  CLEAR_PAYMENT,
   makePayment
 } from '../actions/payment.action';
 import {
   UPDATE_PRODUCT,
+  CLEAR_PRODUCT,
   fetchItem
 } from '../actions/product.action';
 
@@ -18,16 +20,45 @@ const stateInit = {
 
 
 export function paymentReducer(state = stateInit, action) {
-  const newState = {};
-
   if (action.type === MAKE_PAYMENT) {
-    return Object.assign(newState, state, { payment: 'Pending', product: '', reason: ''});
+    return Object.assign(
+      {},
+      state,
+      { payment: 'Pending', product: '', reason: '' }
+    );
   } else if (action.type === PAYMENT_FAILURE) {
-    return Object.assign(newState, state, { payment: 'Failure', product: 'Failed to purchase product... \n This is likely our fault, we have developers working to fix the issue! \n Try refreshing the page, ensure you are logged in, \n and that you have enough money in your wallet.', reason: action.payload });
+    return Object.assign(
+      {},
+      state,
+      {
+        payment: 'Failure',
+        product: `Failed to purchase product.\n 
+        Try refreshing the page, ensure you are logged in, \n 
+        and that you have enough money in your wallet.`,
+        reason: action.payload
+      }
+    );
   } else if (action.type === PAYMENT_SUCCESS) {
-    return Object.assign(newState, state, { payment: 'Success', product: action.payload, reason:'Your payment has been sent to the seller, please contact them to receive your item.'});
-  } else if (action.type === 'CLEAR_PAYMENT') {
-    return Object.assign(newState, state, { payment: undefined, product: undefined, reason: undefined});
+    return Object.assign(
+      {},
+      state,
+      {
+        payment: 'Success',
+        product: action.payload,
+        reason: `Your payment has been sent to the seller, 
+        please contact them to receive your item.`
+      }
+    );
+  } else if (action.type === CLEAR_PAYMENT) {
+    return Object.assign(
+      {},
+      state,
+      {
+        payment: undefined,
+        product: undefined,
+        reason: undefined
+      }
+    );
   }
 
   return state;
@@ -36,10 +67,10 @@ export function paymentReducer(state = stateInit, action) {
 export function mapDispatchToProps(dispatch) {
   return {
     makePayment: product => dispatch(makePayment(product)),
-    clearPayment: () => dispatch({type: 'CLEAR_PAYMENT'}),
+    clearPayment: () => dispatch({ type: CLEAR_PAYMENT }),
     goBack: () => dispatch(goBack()),
     updateProduct: itemID => dispatch(fetchItem(itemID)),
-    clearProduct: () => dispatch({ type: 'CLEAR', product: {} })
+    clearProduct: () => dispatch({ type: CLEAR_PRODUCT, product: {} })
   };
 }
 export function mapStateToProps(state) {

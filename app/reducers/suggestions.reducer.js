@@ -1,16 +1,16 @@
 import {
   clearSuggestions,
-  fetchSuggestions
+  fetchSuggestions,
+  GET_SUGGESTIONS,
+  CLEAR_SUGGESTIONS
 } from '../actions/getSuggestions.action';
 
 
 export function suggestionsReducer(state = { suggestion: [] }, action) {
-  const newState = {};
-
-  if (action.type === 'GET_SUGGESTIONS') {
-    return Object.assign(newState, state, { suggestion: action.data });
-  } else if (action.type === 'CLEAR_SUGGESTIONS') {
-    return Object.assign(newState, state, { suggestion: [] });
+  if (action.type === GET_SUGGESTIONS) {
+    return Object.assign({}, state, { suggestion: action.data });
+  } else if (action.type === CLEAR_SUGGESTIONS) {
+    return Object.assign({}, state, { suggestion: [] });
   }
   return state;
 }

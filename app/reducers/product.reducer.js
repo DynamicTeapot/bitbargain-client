@@ -1,6 +1,7 @@
 import {
   UPDATE_PRODUCT,
-  fetchItem
+  fetchItem,
+  CLEAR_PRODUCT
 } from '../actions/product.action';
 
 const productInit = {
@@ -19,11 +20,11 @@ const productInit = {
 export function productReducer(state = productInit, action) {
   const dispatch = action.type;
 
-  if (dispatch === 'updateProduct') {
+  if (dispatch === UPDATE_PRODUCT) {
     // Should only be used to change info on the current products
     return Object.assign({}, action.product);
   }
-  if (dispatch === 'CLEAR') {
+  if (dispatch === CLEAR_PRODUCT) {
     return productInit;
   }
   return state;
@@ -40,6 +41,6 @@ export function mapStateToProps(state) {
 export function mapDispatchToProps(dispatch) {
   return {
     updateProduct: itemID => dispatch(fetchItem(itemID)),
-    clearProduct: () => dispatch({ type: 'CLEAR', product: {} })
+    clearProduct: () => dispatch({ type: CLEAR_PRODUCT })
   };
 }
