@@ -22,6 +22,11 @@ class SearchResult extends React.Component {
       $(`.carousel${this.props.product.id}`).carousel('next');
     });
   }
+  componentWillReceiveProps() {
+    this.setState({
+      imageIndex: 0
+    });
+  }
   imageClick() {
     var nextIndex = (this.state.imageIndex + 1) % this.props.product.images.length;
     this.setState({imageIndex: nextIndex});

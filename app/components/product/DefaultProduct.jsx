@@ -58,10 +58,10 @@ class DefaultProduct extends React.Component {
         <div className="row">
           <div className="col s12 m12 l12">
             <div className="card sticky-action">
-              <CardTitle product={this.props.product} user={this.props.role}/>
+              <CardTitle product={this.props.product} user={this.props.role} loggedIn={this.props.loggedIn} id={this.props.id}/>
               <CardImage product={this.props.product} user={this.props.role}/>
               <CardReveal product={this.props.product} user={this.props.role}/>
-              <CardAction product={this.props.product} user={this.props.role} loggedIn={this.props.loggedIn}/>
+              <CardAction product={this.props.product} user={this.props.role} loggedIn={this.props.loggedIn} id={this.props.id}/>
             </div>
           </div>
         </div>

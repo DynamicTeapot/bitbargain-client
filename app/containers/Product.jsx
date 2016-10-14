@@ -55,6 +55,7 @@ class productContainer extends React.Component {
   render() {
     return (
       <Default
+        id={this.props.params.id}
         role={this.state.userRole}
         loggedIn={this.props.loggedIn}
         updateProduct={this.props.updateProduct}
