@@ -4,7 +4,8 @@ const flags = ['Easy Conversion from BTC to USD!', 'Create a Wallet on Signup!',
 
 class Footer extends React.Component {
   componentDidMount() {
-    $('footer').pushpin({ offset: '90%' });
+
+    $('footer').pushpin({ offset: $(document).height()-90 });
   }
   render() {
     return (

@@ -34,7 +34,7 @@ const chooseButton = (props) => {
   return DEFAULT_BUTTON(props);
 }
 
-const colors = ['light', 'red', 'yellow', 'teal', 'purple', 'orange', 'green', 'blue']
+const colors = ['light', 'red', 'yellow', 'teal', 'purple', 'orange', 'green', 'blue'];
 
 const CardTitle = props => {
   return (
@@ -43,7 +43,7 @@ const CardTitle = props => {
       { props.product.title }
     </span>
     <span className="right" style={{zIndex:1}}>
-      {constants.prettifyNumber(props.product.price)}&#9;&nbsp;&nbsp;&nbsp;
+      {constants.prettifyNumber(props.product.price)}&nbsp;&nbsp;&nbsp;
       {chooseButton(props, false)}
     </span>
   </div>
