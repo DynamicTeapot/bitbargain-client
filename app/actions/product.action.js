@@ -1,4 +1,5 @@
 export const UPDATE_PRODUCT = 'updateProduct';
+export const CLEAR_PRODUCT = 'CLEAR';
 
 export function fetchItem(itemID) {
   return (dispatch) => {

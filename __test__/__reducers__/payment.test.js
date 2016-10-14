@@ -17,9 +17,9 @@ describe('payment reducer', () => {
 
   it('should handle MAKE_PAYMENT', () => {
     expect(paymentReducer({}, { type: MAKE_PAYMENT })).toEqual({
-      payment: 'PENDING',
-      product: undefined,
-      reason: undefined
+      payment: 'Pending',
+      product: '',
+      reason: ''
     });
   });
 });

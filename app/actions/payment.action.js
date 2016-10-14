@@ -4,6 +4,7 @@
 export const MAKE_PAYMENT = 'MAKE_PAYMENT';
 export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
 export const PAYMENT_FAILURE = 'PAYMENT_FAILURE';
+export const CLEAR_PAYMENT = 'CLEAR_PAYMENT';
 
 
 export function paymentHandler(res, status) {
