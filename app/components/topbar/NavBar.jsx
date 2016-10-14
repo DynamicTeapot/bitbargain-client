@@ -17,7 +17,7 @@ class NavBar extends React.Component {
     };
   }
   componentDidMount() {
-    $('.button-collapse').sideNav();
+    // $('.button-collapse').sideNav();
     this.updateTabs(this.props);
     $('#realNav').pushpin({ top: $('nav').offset().top});
   }
@@ -132,7 +132,7 @@ class NavBar extends React.Component {
 
     const mobile = this.state.tabMap.map((tab, index) => {
       if(tab.link === 'special') {
-        return tab.data;
+        // return tab.data;
       }
       return (<li key={index}>
         <Link to={tab.link}>
@@ -143,8 +143,8 @@ class NavBar extends React.Component {
 
     return (
       <div>
-        <nav></nav>
-        <nav style={{zIndex: 10}} id='realNav'>
+        <nav style={{display:'hidden'}}></nav>
+        <nav style={{zIndex: 1}} id='realNav'>
           <div className="nav-wrapper cyan">
             <a data-activates="mobile" className="button-collapse">
               <i className="material-icons">menu</i>
@@ -157,7 +157,7 @@ class NavBar extends React.Component {
             <ul className="right hide-on-med-and-down">
               {tabsRight}
             </ul>
-            <ul className="side-nav" id="mobile">
+            <ul className="side-nav" id="mobile" style={{zIndex:10001}}>
               {mobile}
             </ul>
           </div>
