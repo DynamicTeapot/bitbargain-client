@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import commaNumber from 'comma-number';
 import { CardTitle, CardImage, CardAction, CardReveal } from './components/CardComponents.jsx';
-import enums from './ProductEnums';
-const DEFAULT_WIDTH = '80%'; 
+
 class DefaultProduct extends React.Component {
   constructor(props) {
     super(props);
@@ -53,16 +52,15 @@ class DefaultProduct extends React.Component {
     }
   }
   render() {
-    console.log(this.props)
     return (
       <div className="container">
         <div className="row">
           <div className="col s12 m12 l12">
             <div className="card sticky-action">
-              <CardTitle product={this.props.product}/>
-              <CardImage product={this.props.product}/>
-              <CardReveal product={this.props.product}/>
-              <CardAction product={this.props.product}/>
+              <CardTitle product={this.props.product} user={this.props.role} loggedIn={this.props.loggedIn} id={this.props.id}/>
+              <CardImage product={this.props.product} user={this.props.role}/>
+              <CardReveal product={this.props.product} user={this.props.role}/>
+              <CardAction product={this.props.product} user={this.props.role} loggedIn={this.props.loggedIn} id={this.props.id}/>
             </div>
           </div>
         </div>

@@ -6,8 +6,8 @@ import item from '../../schema';
 function SearchResults(props) {
   return (
     <div className="row">
-    <hr/> {
-      props.products.map((product, index) => (<SearchResult key={index} product={product} />))
+      {
+        props.products.map((product, index) => (<SearchResult key={index} product={product} />))
       }
     </div>
   );
