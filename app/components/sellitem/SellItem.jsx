@@ -80,7 +80,7 @@ class sellItemContainer extends React.Component {
     const descFun = e => this.setState({ description: e.target.value });
     const titleFun = e => this.setState({ title: e.target.value });
     const catFun = e => {
-      if (e.which === 13) {
+      if (e.which === 13 && e.target.value.length > 1) {
         this.setState({ categories: this.state.categories.concat(e.target.value)});
         $(e.target).val('');
       }
@@ -98,7 +98,7 @@ class sellItemContainer extends React.Component {
         <div className="container">
           <div className="row">
             {/*<form id="sell-form" className="sell-item-form col s12">*/}
-            <div className="col s6 push-s6">
+            <div className={/*"col s6 push-s6"*/'col s12'}>
               <ImagePreview />
               <ImageUpload />
               <div className="row">
@@ -134,11 +134,12 @@ class sellItemContainer extends React.Component {
                   <button className="btn waves-effect waves-light" type="submit" name="action" onClick={submitFun}>Submit
                     <i className="material-icons right">send</i>
                   </button>
-              {/*</form>*/}
               </div>
-              <div className="col s6 pull-s6">
+              {/*
+                <div className="col s6 pull-s6">
                 <Mock product={this.mock()}/>
               </div>
+              */}
             </div>
           </div>
   ));
